@@ -1,0 +1,19 @@
+<template>
+  <div class="mainCard  slds-align_absolute-center">
+    <div if:true={isDone}> <span style="
+    font-size: large;
+">Payment has been successfully done </span><br />
+      <img src={successLogo} alt="Success" style="height: 100px;
+    width: 100px;" />
+      <button class="bookBtn" onclick={goExploreMovies}>GO Explore Movies</button>
+    </div>
+    <div if:false={isDone}>
+      <span style="
+    font-size: large;
+">Payment has been failed. Please try again. </span><br />
+      <img src={wrongLogo} style="height: 100px;
+    width: 100px;" />
+      <button class="bookBtn" onclick={goExploreMovies}>Try Again</button>
+    </div>
+  </div>
+</template>

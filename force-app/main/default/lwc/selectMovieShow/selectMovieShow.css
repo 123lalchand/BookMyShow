@@ -1,0 +1,22 @@
+.showTimeCard{
+    width: 131px;
+    height: 68px;
+    padding: 12px 8px;
+    border-radius: 8px;
+    line-height: 24px;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+   
+}
+.showTime{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -.08px;
+    color: #21c179;
+}
+.showType{
+    font-size: 14   px;
+    color: #a2a2a2;
+    font-weight: 400;
+}

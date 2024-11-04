@@ -1,0 +1,16 @@
+.mainCard{
+    display: block;
+    text-align: center;
+    width: 50%;
+}
+
+.bookBtn{
+    background-color: #EC407A;
+    height: 44px;
+    font-size: large;
+    border: 0px;
+    border-radius: 8px;
+    color: white;
+    width: -webkit-fill-available;
+    margin: 20px 2px;
+}

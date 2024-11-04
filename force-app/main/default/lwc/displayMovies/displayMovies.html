@@ -1,0 +1,48 @@
+<template>
+    <div class="mainCard slds-p-around_medium">
+        <template if:true={movieAvailable}>
+            <div class="slds-grid slds-wrap">
+                <template for:each={movies} for:item="movie">
+                    <div key={movie.id}
+                        class="slds-col slds-size_1-of-1 slds-large-size_4-of-12">
+                        <div class="movieCard  slds-m-top_small" data-id={movie.Id} onclick={handleBookTicket}>
+                            <img src={movie.Poster__c} alt="Poster" />
+                                <div if:true={isUpcomingShow} class="newRelease" >
+                                    <span>Release Date</span><br />
+                                    <span>{movie.Release_Date__c}</span>
+                                </div>
+                            <div class="slds-p-around_small movieDetails ">
+                                <div class="movieTitle">
+                                    <span>{movie.Name}</span>
+                                </div>
+                                <!-- <div class="movieLanguage">
+                                    <span>{movie.Language__c}</span>
+                                </div> -->
+                                <div class="movieGenre">
+                                    <span>{movie.Genre__c}</span>
+                                </div>
+                                <footer class="slds-card__footer footer" if:false={isUpcomingShow}>
+                                    <button class="slds-button slds-button_neutral bookBtn" data-id={movie.Id}
+                                        onclick={handleBookTicket}>Book
+                                        Ticket</button>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <template if:true={movieNotFound}>
+            <div class="slds-p-around_medium">
+                <span class="slds-text-heading_medium">No Movies Found</span>
+            </div>
+        </template>
+        <template if:true={isLoding}>
+            <div class="slds-p-around_medium">
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+    </div>
+</template>

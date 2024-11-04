@@ -1,0 +1,12 @@
+<template>
+    <div >
+            <lightning-carousel>
+                <template for:each={latestMovies} for:item="movie">
+                <lightning-carousel-image class="CarouselOfMovies" data-id={movie.movieId} key={movie.movieId}
+                    src ={movie.bannerImgBase64}
+                    href = "javascript:void(0);" onclick={navigateOnMovie}>
+                </lightning-carousel-image>
+                </template>
+            </lightning-carousel>
+            </div>
+</template>

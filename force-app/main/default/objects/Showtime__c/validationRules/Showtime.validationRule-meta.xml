@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Showtime</fullName>
+    <active>true</active>
+    <errorConditionFormula>Show_Time__c &lt; DATETIMEVALUE(TODAY())</errorConditionFormula>
+    <errorDisplayField>Show_Time__c</errorDisplayField>
+    <errorMessage>ShowTime can&apos;t be less than today.</errorMessage>
+</ValidationRule>

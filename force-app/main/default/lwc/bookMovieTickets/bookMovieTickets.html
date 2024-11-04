@@ -1,0 +1,72 @@
+<template>
+   
+    <div class="mainCard slds-align_absolute-center">
+    <div class="movieDetailCard">
+        <!-- <span></span>
+        <span></span> -->
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-2 slds-large-size_8-of-12">
+                <span class="movieTitle" if:true={showrecord.Movie__r}>{showrecord.Movie__r.Name}</span><br />
+                <div class="movieDetail">
+                    <div class="row">
+                        <div class="box">{showrecord.Language__c}</div>
+                        <div class="box">{showrecord.Show_Format__c}</div>
+                    </div>
+                  <div  if:true={showrecord.Theater__r}>  {showrecord.Theater__r.Name}</div> <br/>
+                </div>
+            </div>
+         
+            <div class="slds-col slds-size_1-of-2 slds-large-size_4-of-12">
+                <img if:true={showrecord.Movie__r} class="moviePoster slds-float_right"
+                    src={showrecord.Movie__r.Poster__c}/>              
+            </div>
+            <br/>
+            <div class="rowPadding slds-col slds-size_1-of-2 slds-large-size_8-of-12">
+                <span style="font-size: large;">{showTime}</span><br />
+                    <span style="font-size: medium;font-weight: 400;color: #757575;" if:true={showrecord.Screen__r}>{showrecord.Screen__r.Screen_Label__c}, {showrecord.selectedSeatsFormatted}</span>
+            </div>
+            <div class="rowPadding slds-col slds-size_1-of-2 slds-large-size_4-of-12">
+                <div class="tickectCard slds-float_right">
+                    <span style="font-size: 24px; font-weight: 600;">{showrecord.totalSelectedSeats}</span><br />
+                    Ticket
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="summaryCard">
+        <span style="font-size: 24px;font-weight: 600;">Booking Summary</span>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_2-of-3 slds-large-size_9-of-12">
+                <span class="rowTitle">Tickets</span><br/>
+                <span>{showrecord.totalSelectedSeats} Tickets @ ₹{showrecord.ticketPrice} each</span>
+            </div>
+            <div class="slds-col slds-size_1-of-3 slds-large-size_3-of-12">
+                <span class="rowTitle slds-float_right">₹{showrecord.totalPrice}</span>
+            </div>
+            <div class="slds-col slds-size_2-of-3 slds-large-size_9-of-12">
+                <span class="rowTitle">Taxes & Fees</span><br/>
+                <span>Booking Charges</span><br/>
+                <span>Integrated Goods and Service Tax</span>
+            </div>
+            <div class="slds-col slds-size_1-of-3 slds-large-size_3-of-12">
+                <div class=" slds-float_right">
+                <span class="rowTitle">₹{totalTax}</span><br/>
+                <span>₹{bookingCharges}</span><br/>
+                <span>₹{taxCharges}</span>
+            </div>
+            </div>
+            <br/>
+            <div class="rowPadding slds-col slds-size_2-of-3 slds-large-size_9-of-12">
+                <span class="rowTitle">Total</span>
+            </div>
+            <div class="rowPadding slds-col slds-size_1-of-3 slds-large-size_3-of-12">
+                <span class="rowTitle slds-float_right">₹{totalAmount}</span>
+            </div> 
+        </div>
+    </div>
+    <br/>
+    <div class="footer"><button class="CancelBtn" onclick={cancelBtn}>Cancel</button> <button class="bookBtn" onclick={doPayment}>Proceed Payments</button></div>
+</div>
+
+</template>

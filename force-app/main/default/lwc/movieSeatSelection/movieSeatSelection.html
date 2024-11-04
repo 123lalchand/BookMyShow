@@ -1,0 +1,25 @@
+<template>
+    <div class="screen">SCREEN</div>
+    <div class="seat-layout">
+        <template for:each={seats} for:item="row">
+            <div class="seat-row" key={row.rowLabel}>
+                <div class="row-label">{row.rowLabel}</div>
+                <template for:each={row.rowSeats} for:item="seat">
+                    <button 
+                        key={seat.id}
+                        data-seat-id={seat.id}
+                        onclick={handleSeatClick}
+                        class={seat.cssClass}
+                    >
+                        {seat.number}
+                    </button>
+                </template>
+            </div>
+        </template>
+    </div>
+    <div class="summary">
+        <p>Selected Seats: {selectedSeatsFormatted}</p>
+        <p>Total Price: ${totalPrice}</p>
+        <lightning-button label="Book Tickets" onclick={bookTickets}></lightning-button>
+    </div>
+</template>

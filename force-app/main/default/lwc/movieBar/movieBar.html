@@ -1,0 +1,15 @@
+<template>
+    <div class="filterbarCard">
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_6-of-12 slds-large-size_10-of-12">
+                <div class="slds-button-group" role="group">
+                    <button class="slds-button activebtn nowShowingbtn" name="nowShowing"  onclick={handleShow}>Now Showing</button>
+                    <button class="slds-button btn upcomingbtn" name="upcoming" onclick={handleShow}>Coming Soon</button>
+                </div>
+            </div>
+            <div class="slds-col slds-size_6-of-12 slds-large-size_2-of-12 slds-align_absolute-center">
+                <c-select-city></c-select-city>
+            </div>
+        </div>
+    </div>
+</template>

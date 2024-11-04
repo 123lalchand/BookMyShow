@@ -1,0 +1,48 @@
+<template>
+    <div class="slds-p-around_small mainDiv">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-1">
+                <div class="slds-form-element">
+                    <lightning-input type="search" onchange={handleSearch} placeholder="Enter your city"
+                        class="slds-p-around_small " value={cityValue}></lightning-input>
+                        <template if:true={showCombobox}>
+                    <div id="listbox-id-28" class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid searchCityBox" role="listbox"
+                        tabindex="0" aria-busy="false">
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                            <template for:each={searchedCities} for:item="city">
+                                <li key={city.Id} role="presentation" class="slds-listbox__item" >
+                                    <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
+                                        role="option">
+                                        <span class="slds-media__figure slds-listbox__option-icon"></span>
+                                        <span class="slds-media__body"  data-name={city.DeveloperName} onclick={handleSearchCity}>
+                                            <span class="slds-truncate" >{city.DeveloperName}</span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+                </div>
+            </div>
+        </div>
+        <div class="popularCity slds-p-horizontal_x-small">
+            <span class="slds-text-heading_medium"><b>Popular Cities</b></span><br />
+            <div class="slds-grid slds-wrap">
+                <template for:each={popularCities} for:item="city">
+                    <div key={city.Id} class="slds-col slds-size_6-of-12 slds-large-size_2-of-12 slds-p-around_small">
+                        <button class="cityBtn" name={city.DeveloperName} onclick={handlePopularCity}>{city.DeveloperName}</button>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <!-- <span class="slds-text-heading_medium heading">All Cities</span><br/>
+            <div class=" slds-grid slds-wrap ">
+        <template for:each={allCities} for:item="city">
+        <div key={city.Id} class="slds-col slds-size_4-of-12 slds-large-size_2-of-12">
+            <span>{city.DeveloperName}</span>
+        </div>
+        </template>
+        </div> -->
+    </div>
+</template>

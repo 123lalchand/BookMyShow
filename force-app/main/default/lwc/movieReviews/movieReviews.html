@@ -1,0 +1,41 @@
+<template>
+    <div if:true={isReviews} class="mainCard">
+        <div class="flow" if:false={isalredyRated}>
+            <div class="title">How was the movie?</div>
+            <lightning-flow flow-api-name="Review_Screen_Flow" flow-input-variables={flowInputVariables}
+                onstatuschange={handleFlowStatusChange}>
+            </lightning-flow>
+        </div>
+        <br/>
+        <div if:true={isalredyRated}>
+        <span class="title">My Reviews</span>
+        <div class="reviewCard">
+            <lightning-layout horizontal-align="spread">
+                <lightning-layout-item padding="around-small">
+                    <lightning-icon icon-name="action:user" size="x-small"></lightning-icon><span class="userName" if:true={myReview.User__r}>{myReview.User__r.Name}</span>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                    <lightning-icon icon-name="utility:favorite" variant="error" size="small" ></lightning-icon><span style="font-size: larger; padding:0px 4px">{myReview.Rating__c}/10</span>
+                </lightning-layout-item>
+            </lightning-layout>
+            <p>{myReview.Review__c}</p>
+        </div>
+        </div><br/>
+        <!-- <template if:true={movieReviews}> -->
+        <span class="title">Most helpfull reviews</span>
+        <template for:each={movieReviews} for:item="review" >
+        <div key={review.Id} class="reviewCard">
+            <lightning-layout horizontal-align="spread">
+                <lightning-layout-item padding="around-small">
+                    <lightning-icon icon-name="action:user" size="x-small"></lightning-icon><span class="userName" if:true={review.User__r}>{review.User__r.Name}</span>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                    <lightning-icon icon-name="utility:favorite" variant="error" size="small" ></lightning-icon><span style="font-size: larger; padding:0px 4px">{review.Rating__c}/10</span>
+                </lightning-layout-item>
+            </lightning-layout>
+            <p>{review.Review__c}</p>
+        </div>
+        </template>
+    <!-- </template> -->
+    </div>
+</template>

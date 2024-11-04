@@ -1,0 +1,35 @@
+.mainCard{
+    background-color: white;
+    border-radius: 14px;
+    padding: 16px;
+
+}
+
+.flow{
+    border: 1px solid #d8ddd6;
+    border-radius: 14px;
+    padding: 10px;
+}
+.title{
+    font-size: large;
+    text-align: center;
+    margin-bottom: 14px;
+}
+.userName{
+    font-size: large;
+    margin-left: 10px;
+}
+
+p{
+    font-size: 14px;
+    padding: 10px 45px;
+}
+.iconColor{
+    color: red;
+}
+
+.reviewCard{
+    border: 1px solid #d8ddd6;
+    border-radius: 8px;
+    margin: 10px 0 20px;
+}

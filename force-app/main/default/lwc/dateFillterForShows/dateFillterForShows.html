@@ -1,0 +1,8 @@
+<template>
+    <template for:each={dates} for:item="date" for:index="index">
+        <button key={date.day}  class={date.cssClass} onclick={handleDateBTN} data-index={index}>
+            <span >{date.weekday}</span>
+            <span class={date.cssDateClass}><b>{date.day}</b></span>
+        </button>
+    </template>
+</template>

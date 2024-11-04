@@ -1,0 +1,87 @@
+.screen {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: large;
+}
+
+.movieTitle{
+    font-size: 24px;
+}
+.seat-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.seat-row {
+    display: flex;
+    align-items: center;
+}
+
+.row-label {
+    margin-right: 10px;
+    font-weight: bold;
+    width: 20px;
+}
+
+.seat {
+    width: 36px;
+    height: 36px;
+    margin: 0 5px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #E57373;
+    cursor: pointer;
+}
+
+.seat.booked {
+    background-color: #e0e0e0;
+    border: 0px;
+    color: #757575;
+    cursor: not-allowed;
+}
+
+.seat.selected {
+    background-color: #E57373;
+    color: white;
+}
+
+.summary {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.availableCard{
+    width: 18px;
+    height: 18px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #E57373;
+}
+.bookedCard{
+    width: 18px;
+    height: 18px;
+    border: 0px;
+    border-radius: 6px;
+    background-color:  #e0e0e0;
+}
+
+.selectedCard{
+    width: 18px;
+    height: 18px;
+    border: 0px;
+    border-radius: 6px;
+    background-color:  #E57373;
+}
+
+.bookBtn{
+    width: 132px;
+    height: 44px;
+    border: 0px;
+    color: white;
+    font-size: large;
+    border-radius: 6px;
+    background-color: #E91E63;
+}

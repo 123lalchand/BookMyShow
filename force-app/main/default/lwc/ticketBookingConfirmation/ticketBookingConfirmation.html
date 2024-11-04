@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Ticket Booking Confirmation" icon-name="utility:ticket">
+        <div class="confirmation-details">
+            <p>Movie: {movieName}</p>
+            <p>Selected Seats: </p>
+            <p>Total Price: ${totalPrice}</p>
+        </div>
+        <lightning-button label="Confirm and Pay" onclick={confirmBooking}></lightning-button>
+    </lightning-card>
+</template>

@@ -1,0 +1,39 @@
+<template>
+    <div class="movieDetailCard">
+        <div class="slds-grid slds-wrap">
+            <div class=" slds-col slds-size_1-of-1 slds-large-size_6-of-12">
+                <span class="movieTitle">{movie.Name}</span><br/>
+                <span class="movieDetail">U/A {movie.Duration__c}</span><br/>
+                <span class="movieDetail">{movie.Language__c}</span><br/>
+                <span class="movieDetail">{movie.Genre__c}</span><br/>
+                <button class="watchTrailerBtn slds-m-top_small" onclick={handleWatchTrailer}>
+                    <lightning-icon icon-name="utility:play" variant="inverse" alternative-text="play" size="x-small">
+                </lightning-icon>Watch Trailer</button><br/>
+                <div class="slds-button-group btnGroup" role="group" if:false={urlUpcoming}>
+                    <button class="slds-button activebtn nowShowingbtn" name="nowShowing"  onclick={handleShow}>Now Showing</button>
+                    <button class="slds-button btn reviewsBtn" name="reviews" onclick={handleShow}>Rating & Reviews</button>
+                </div>
+            </div>
+            <div class=" slds-col slds-size_1-of-1 slds-large-size_6-of-12">
+                <img class="moviePoster slds-float_right" src={movie.Poster__c}/>
+            </div>
+        </div>
+
+    </div>
+
+    <template if:true={showModal}>
+        <div class="modal-backdrop" onclick={handleCloseModal}>
+            <div class="video-container" onclick={stopPropagation}>
+                <iframe 
+                width="100%" 
+                height="100%" 
+                src={movie.MovieTrailerLink__c} 
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+            </iframe>
+          
+            </div>
+        </div>
+    </template>
+</template>

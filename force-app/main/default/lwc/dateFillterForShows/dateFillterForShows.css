@@ -1,0 +1,30 @@
+.dateCard {
+    display: grid;
+    background-color: white;
+    border: 1px solid rgb(165, 165, 165);
+    border-radius: 10px;
+    color: rgb(151, 151, 151);
+    width: 44px;
+    height: 44px;
+    margin-left: 8px;
+    text-align: center;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.acitvebtn {
+    background-color: #ef5350;
+    color: white;
+}
+
+
+.date{
+    color: black;
+    margin-top: -6px;
+    font-size: large;
+}
+.acitvedate{
+    color: white;
+    margin-top: -6px;
+    font-size: large;
+}

@@ -1,0 +1,26 @@
+<template>
+    <lightning-datatable
+        key-field="id"
+        data={data}
+        columns={columns}
+        hide-checkbox-column=""
+        show-row-number-column=""></lightning-datatable>
+        <div class="slds-grid slds-slds-gutters">
+            <div class="slds-col slds-size_2-of-12 ">
+                <button class="slds-button slds-button_neutral slds-m-around_x-small" name="previous"
+                    onclick={handlePrevious}>previous</button>
+
+            </div>
+            <div class="slds-col slds-size_8-of-12 slds-align_absolute-center">
+                
+                <span class="slds-text-heading_medium  slds-m-around_x-small">{currentPage}/{totalPages}</span>
+                
+            </div>
+            <div class="slds-col slds-size_2-of-12 slds-p-around_x-small">
+                <button class="slds-button slds-button_neutral slds-m-around_x-small" style="float: right;
+" name="next"
+                    onclick={handleNext}>Next</button>
+
+            </div>
+        </div>
+</template>

@@ -1,0 +1,26 @@
+.mainDiv{
+    height: 100%;
+    background-color: white;
+}
+.cityBtn{
+    border-radius: 20px;
+    width: 100px;
+    font-size: medium;
+    color: black;
+    border: 2px solid #795548;
+    background-color: #ffb9bb;
+    font-family: 'circular';
+}
+.cityBtn :hover{
+    background-color: #ff9c9c;
+    border: 2px solid #F44336;
+}
+.allcityDiv{
+    height: 200px;
+}
+
+.searchCityBox{
+    margin-top: -10px;
+    font-size: medium;
+    width: 98%;
+}

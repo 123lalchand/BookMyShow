@@ -1,0 +1,10 @@
+<template>
+    <div class="slds-p-around_small fillterCard">
+        <span class="slds-text-heading_medium"><b>Language</b></span>
+        <lightning-radio-group class="filter" name="language" options={languageOptions} value={languageValue}
+            onchange={handleChange} type="radio"></lightning-radio-group>
+        <span class="slds-text-heading_medium"><b>Genres</b></span>
+        <lightning-checkbox-group name="genres"  class="filter"  options={genresOptions} value={selectedGenresValue}
+            onchange={handleChange}></lightning-checkbox-group>
+    </div>
+</template>

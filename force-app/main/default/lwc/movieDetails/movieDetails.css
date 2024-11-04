@@ -1,0 +1,91 @@
+.movieTitle{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: .36px;
+    margin-bottom: 16px;
+}
+.movieDetail{
+    margin-top: 8px;
+    font-size: 16px;
+    color: #7e7e7e;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -.08px;
+}
+
+
+.moviePoster{
+    border-radius: 14px;
+    width: 158px;
+    height: 208px;
+    object-fit: cover;
+}
+
+.watchTrailerBtn{
+    background-color: #EF5350;
+    border: 0px;
+    border-radius: 38px;
+    padding: 6px;
+    font-size: large;
+    color: white;
+    width: 142px;
+}
+.ratingAndReviewrBtn{
+    background-color: #2196f3;
+    border: 0px;
+    border-radius: 6px;
+    padding: 6px;
+    font-size: large;
+    color: white;
+    width: 142px;
+}
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.video-container {
+    width: 80%;
+    max-width: 800px;
+    height: 60%;
+    max-height: 450px;
+    background: #000;
+}
+
+.btnGroup{
+    margin-top: 12px;
+}
+
+.activebtn{
+    background-color: #e91e63;
+    border: 1px solid #d8ddd6;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    height: 34px;
+}
+.btn{
+    background-color: #FCE4EC;
+    border: 0px;
+    font-size: 14px;
+    padding: 10px;
+    font-weight: 600;
+    color: black;
+    height: 34px;
+}
+@media (max-width: 768px) {
+    .video-container {
+        width: 100%;
+        height: 100%;
+    }
+}

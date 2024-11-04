@@ -1,0 +1,11 @@
+.btn{
+    border-radius: 6px;
+    border: 2px solid lightgray;
+    height: 35px;
+    font-size: medium;
+    background: white;
+}
+
+.closeBtn{
+    background-color: white;
+}

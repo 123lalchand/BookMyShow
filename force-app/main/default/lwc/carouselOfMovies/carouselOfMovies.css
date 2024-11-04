@@ -1,0 +1,9 @@
+.CarouselOfMovies{
+    background-color: white;
+    border-radius: 6px;
+    height: 250px;
+    width: fit-content;
+}
+.CarouselOfMovies>img {
+    height : 315px;
+}

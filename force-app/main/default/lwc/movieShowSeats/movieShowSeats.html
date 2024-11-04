@@ -1,0 +1,53 @@
+<template>
+    <template if:false={showBookingCard}>
+    <div class="screen" if:true={show}>
+        <div class="movieTitle" if:true={show.Movie__r}>
+            {show.Movie__r.Name} . {show.Language__c} 
+        </div>
+        <div if:true={show.Theater__r}>
+            {show.Theater__r.Name}
+        </div> 
+    </div>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-1 slds-large-size_3-of-12">
+            <span style="font-size: large;text-transform: uppercase;">Price  ₹{ticketPrice}</span>
+        </div>
+        <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12">
+            <div class="screen">SCREEN</div>
+        </div>
+        <div class="slds-col slds-size_1-of-1 slds-large-size_3-of-12" style="display: flex;gap: 8px;">
+            <div class="availableCard"></div><span>AVAILABLE</span>
+            <div class="bookedCard"></div><span>BOOKED</span>
+            <div class="selectedCard"></div><span>SELECTED</span>
+        </div>
+    </div>
+    <div class="seat-layout">
+        <template for:each={seats} for:item="row">
+            <div class="seat-row" key={row.rowLabel}>
+                <div class="row-label">{row.rowLabel}</div>
+                <template for:each={row.rowSeats} for:item="seat">
+                    <button key={seat.id} data-status={seat.status} data-seat-id={seat.id} onclick={handleSeatClick} class={seat.cssClass} disabled={seat.isdisabled} >
+                        {seat.number}
+                    </button>
+                </template>
+            </div>
+        </template>
+    </div>
+    <template if:true={showBookingBtn}>
+        <div class="slds-grid slds-wrap summary">
+            <div class="slds-col slds-size_1-of-2 slds-large-size_6-of-12">
+                <!-- <p>Selected Seats: {selectedSeatsFormatted}</p> -->
+                <span style="font-size: 24px;">Total Price: ₹{totalPrice}</span><br />
+                <span style="font-size: larger;
+    color: #726d6d;">Ticket {totalSelectedSeats} * ₹{ticketPrice}</span>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-large-size_6-of-12">
+                <button class="bookBtn" onclick={bookTickets}>Book Tickets</button>
+            </div>
+        </div>
+    </template>
+</template>
+    <template if:true={showBookingCard}>
+        <c-book-movie-tickets oncancel={handleCloseClick} showrecord={show}></c-book-movie-tickets>
+    </template>
+</template>

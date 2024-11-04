@@ -1,0 +1,64 @@
+<template>
+    <div class="slds-grid slds-wrap" if:false={isReviews}>
+        <div class="slds-col slds-large-size_3-of-12 filterRow">
+            <div class="month">{month}</div>
+            <c-date-fillter-for-shows class="row"></c-date-fillter-for-shows>
+        </div>
+        <div class="slds-col slds-large-size_6-of-12 filterRow">
+            <span class="filterText">Filter By</span>
+            <div class="slds-form-element">
+                <button class="filterBtn" onclick={handleLanguageBtn}>
+                <span class="slds-p-horizontal_xx-small">{languageText}</span>
+                <lightning-icon icon-name="utility:switch" size="x-small" title="switch"></lightning-icon>
+            </button>
+                <template if:true={showLanguageCombobox}>
+                    <div id="listbox-id-28"
+                        class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid searchCityBox" role="listbox"
+                        tabindex="0" aria-busy="false">
+                        <lightning-radio-group label="Language" name="language"  options={languageOptions} value={languageValue} onchange={handleChange}
+                            type="radio"></lightning-radio-group>
+                    </div>
+                </template>
+            </div>
+            <div class="slds-form-element">
+                <button class="filterBtn" onclick={handleFormatBtn}>
+                <span class="slds-p-horizontal_xx-small">{formatText}</span>
+                <lightning-icon icon-name="utility:switch" size="x-small" title="switch"></lightning-icon>
+            </button>
+                <template if:true={showFormatCombobox}>
+                    <div id="listbox-id-29"
+                        class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid searchCityBox" role="listbox"
+                        tabindex="0" aria-busy="false">
+                        <lightning-radio-group name="format" label="Format" options={formatOptions}
+                            value={formatValue} onchange={handleChange}></lightning-radio-group>
+                    </div>
+                </template>
+            </div>
+            <div class="slds-form-element">
+                <button class="filterBtn" onclick={handlePriceBtn}>
+                <span class="slds-p-horizontal_xx-small">{priceText}</span>
+                <lightning-icon icon-name="utility:switch" size="x-small" title="switch"></lightning-icon>
+            </button>
+                <template if:true={showPriceCombobox}>
+                    <div id="listbox-id-30"
+                        class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid searchCityBox" role="listbox"
+                        tabindex="0" aria-busy="false">
+                        <lightning-slider
+                                step="50"
+                                min="100"
+                                max="1000"
+                                value={priceValue}
+                                name="price"
+                                onchange={handleChange}
+                            ></lightning-slider>
+                    </div>
+                </template>
+            </div>
+            <!-- <lightning-combobox name="language" value={languageValue}
+                options={languageOptions} class="filterBtn" onchange={handleFilterChange}></lightning-combobox> -->
+        </div>
+        <div class="slds-col slds-large-size_3-of-12 slds-align_absolute-center">
+            <c-select-city></c-select-city>
+        </div>
+    </div>
+</template>

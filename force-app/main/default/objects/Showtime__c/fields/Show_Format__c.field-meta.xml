@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Format__c</fullName>
+    <label>Show Format</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>2D</fullName>
+                <default>false</default>
+                <label>2D</label>
+            </value>
+            <value>
+                <fullName>3D</fullName>
+                <default>false</default>
+                <label>3D</label>
+            </value>
+            <value>
+                <fullName>4D</fullName>
+                <default>false</default>
+                <label>4D</label>
+            </value>
+            <value>
+                <fullName>IMAX</fullName>
+                <default>false</default>
+                <label>IMAX</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

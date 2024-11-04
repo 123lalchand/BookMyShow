@@ -1,0 +1,14 @@
+<template>
+    <div class="slds-grid slds-wrap" style="padding-left: 4px;">
+        <template for:each={shows} for:item="show">
+        <div key={show.Id} class="slds-col slds-size_4-of-12 slds-large-size_2-of-12">
+            <button class="showTimeCard" name={show.Show_Time__c} data-id={show.Id} onclick={handleMovieShow}>
+                <span class="showTime slds-align_absolute-center">{show.Show_Time__c}</span>
+                <span class="showType slds-align_absolute-center">{show.Show_Format__c}</span>
+            </button>
+        </div>
+    </template>
+    </div>
+
+
+</template>

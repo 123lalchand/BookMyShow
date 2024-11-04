@@ -1,0 +1,58 @@
+.mainCard{
+    background-color: white;
+    border-radius: 10px;
+}
+.movieCard{
+    background-color: white;
+    border-radius: 6px;
+    border: 2px solid lightgray;
+    height: fit-content;
+    width: 320px;
+}
+img{
+    height: 320px;
+    width: 320px;
+}
+.movieTitle{
+    font-size: 20px;
+    color: #101010;
+    font-weight: 600;
+    letter-spacing: -.08px;
+    line-height: 24px;
+    text-transform: capitalize;
+}
+
+.movieGenre{
+    font-size: 14px;
+    color: hsla(0, 0%, 6%, .54);
+    font-weight: 400;
+}
+
+.movieLanguage{
+    font-size: 14px;
+    color: hsla(0, 0%, 6%, .54);
+    font-weight: 400;
+}
+.bookBtn{
+    font-size: large;
+    width: -webkit-fill-available;
+    border-radius: 10px;
+    color: white;
+    height: 36px;
+    background-color: #e91e46;
+    }
+.footer{
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.newRelease{
+    font-size: medium;
+    padding-left: 14px;
+    position: absolute;
+    margin-top: -54px;
+    color: white;
+    line-height: 22px;
+    font-family: sans-serif;
+}
