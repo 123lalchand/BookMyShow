@@ -41,7 +41,6 @@ export default class MovieReviews extends LightningElement {
                 type: "String",
                 value: this.userId,
             });
-            console.log('this.flowInputVariables>>>',this.flowInputVariables);
             
         }else if(error){
             console.log('error',error);
@@ -83,40 +82,58 @@ export default class MovieReviews extends LightningElement {
         );
     }
 
-    getAllRandomMovieReviewsMethod(){
-        getAllRandomMovieReviews({movieId:this.urlMovieId}).then((result) => {
-            if(result.length>0){
-                this.allReviews=result;
-                this.allReviews.forEach(review=>{
-                    if(review.User__c==this.userId){
-                      this.isalredyRated=true;
+    hideThisCard(isReview) {
+            console.log('isReviews', isReview);
+            
+            // Prevent redundant calls
+            if (this.isReviews === isReview) {
+                console.log('No state change, skipping update.');
+                return;
+            }
+            
+            this.isReviews = isReview;
+            
+            if (this.isReviews) {
+                console.log('Fetching reviews...');
+                this.getAllRandomMovieReviewsMethod();
+            }
+        }
+
+getAllRandomMovieReviewsMethod() {
+    console.log('Fetching reviews for movieId:', this.urlMovieId, 'userId:', this.userId);
+
+    // Clear existing data to avoid duplication
+    this.movieReviews = [];
+    this.isalredyRated = false;
+
+    getAllRandomMovieReviews({ movieId: this.urlMovieId })
+        .then((result) => {
+            if (result.length > 0) {
+                this.allReviews = result;
+                this.allReviews.forEach(review => {
+                    if (review.User__c === this.userId) {
                         this.myReview = review;
-                    }else{
+                        this.isalredyRated = true;
+                    } else {
                         this.movieReviews.push(review);
                     }
                 });
-                console.log('this.allReviews>>>',this.allReviews);
+                console.log('Fetched reviews:', this.allReviews);
+            } else {
+                console.log('No reviews found:', result);
             }
-        }).catch((err) => {
-            console.log('error',err);
+        })
+        .catch((err) => {
+            console.error('Error fetching reviews:', err);
         });
-    }
+}
 
-    
-    hideThisCard(isReviews){
-        if(isReviews){
-            this.isReviews = true;
-            this.getAllRandomMovieReviewsMethod();
-        }else{
-            this.isReviews = false;
-        }
-    }
-    
     handleFlowStatusChange(event) {
         
 		console.log("flow status", event.detail.status);
 		if (event.detail.locationName === "SuccessMessage") {
+            this.getAllRandomMovieReviewsMethod();
             this.isalredyRated=true;
-		}
+        }
 	}
 }

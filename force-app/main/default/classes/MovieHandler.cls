@@ -1,4 +1,4 @@
-public without sharing class MovieHandler {
+public with sharing class MovieHandler {
 	 @AuraEnabled(cacheable=true)
     public static User getLogdinUserId() {
         return [Select Id,ContactId from User where Id =: UserInfo.getUserId()];
@@ -59,11 +59,11 @@ public without sharing class MovieHandler {
                  if(!String.isBlank(city)){
                    currentCity = city;
                 }
-                List<Showtime__c> ShowtimeList =  [SELECT Movie__c FROM Showtime__c WHERE Theater__r.Location__City__s = :currentCity];
+                List<Showtime__c> ShowtimeList =  [SELECT Movie__c FROM Showtime__c WHERE Theater__r.Location__City__s = :currentCity AND Show_Time__c >= Today];
                 for(Showtime__c shows : ShowtimeList){
                     movieIds.add(shows.Movie__c);
                 }
-                query += 'SELECT Id, Name, Poster__c, Genre__c, Language__c FROM Movie__c WHERE Id IN :movieIds AND Release_Date__c = LAST_N_DAYS:15 ';  
+                query += 'SELECT Id, Name, Poster__c, Genre__c, Language__c FROM Movie__c WHERE Id IN :movieIds AND Release_Date__c = LAST_N_DAYS:20';  
                /* if((!String.isBlank(language) && language!='All') && (!String.isBlank(genres))){
                     query+=' AND ( Language__c INCLUDES(:language) AND Genre__c INCLUDES(:genres))';
                 }else if((!String.isBlank(language) && language!='All') || (!String.isBlank(genres))){

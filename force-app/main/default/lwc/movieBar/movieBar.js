@@ -27,10 +27,11 @@ export default class MovieBar extends LightningElement {
             }
             const messagePayload = {
                 upcomingShow:this.upcomingShow,
-                City:null,
-                Language:null,
-                Genres:null
+                City:'',
+                Language:'',
+                Genres:''
             };
+            console.log('messagePayload>>>',messagePayload);
             publish(this.messageContext, moviesFilterLMS, messagePayload);
     }
 }

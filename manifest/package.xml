@@ -3,13 +3,34 @@
 	<types>
 		<members>BookingReceiptController</members>
 		<members>BookingTicketHandler</members>
+		<members>CreateShowRecordsBatch</members>
+		<members>DeleteBookingRecordSchedule</members>
+		<members>DeleteBookingRecordScheduleTest</members>
+		<members>DeleteNotShowMovieBatch</members>
+		<members>DeleteNotShowMovieBatchTest</members>
+		<members>DeleteShowtimesRecordSchedule</members>
 		<members>MovieHandler</members>
 		<members>SearchLoctionCtr</members>
 		<members>SearchLoctionCtrTest</members>
 		<members>ShowtimeTriggerHandler</members>
+		<members>ShowtimeTriggerHandlerTest</members>
 		<members>TestDataFactory</members>
 		<members>TheaterAndShowsHandler</members>
+		<members>TheaterAndShowsHandlerTest</members>
 		<name>ApexClass</name>
+	</types>
+	<types>
+		<members>BookingReceiptPage</members>
+		<name>ApexPage</name>
+	</types>
+	<types>
+		<members>ShowtimeTrigger</members>
+		<name>ApexTrigger</name>
+	</types>
+	<types>
+		<members>Create_Case_Screen</members>
+		<members>Review_Screen_Flow</members>
+		<name>Flow</name>
 	</types>
 	<types>
 		<members>bookMovieTickets</members>

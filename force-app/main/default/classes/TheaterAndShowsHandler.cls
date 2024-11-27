@@ -1,4 +1,4 @@
-public without sharing class TheaterAndShowsHandler {
+public with sharing class TheaterAndShowsHandler {
     @AuraEnabled
     public static List<Theater__c> getTheaterWithShows(Id movieId, String city, Datetime showDate) {
         if (String.isBlank(city)) {
@@ -9,17 +9,17 @@ public without sharing class TheaterAndShowsHandler {
         Datetime nextDate;
         //Datetime currentDateTime;
         if (showDate == null || showDate.Date() == Date.Today()) {
-            System.debug('comeI=n');
             Datetime UTC = System.now();            
           Organization orgDetails = [SELECT Id, TimeZoneSidKey FROM Organization WHERE Id = :UserInfo.getOrganizationId()];
             
 			String dateTimeString = UTC.format('yyyy-MM-dd HH:mm:ss', orgDetails.TimeZoneSidKey); 
 			DateTime dateTimeObject = DateTime.valueOfGmt(dateTimeString);
             showDate =dateTimeObject;
+            nextDate = showDate.date().addDays(0);
+        }else{
+            nextDate = showDate.date().addDays(1);
         }
-        System.debug('today>>>'+Date.Today());
-        System.debug('showDate>>>'+showDate.Date());
-        nextDate = showDate.date().addDays(1);
+        System.debug('nextDate>>'+nextDate);
         List<Theater__c> theatersList = [
             SELECT Id, Name, Location__c, 
             (SELECT Id, Show_Time__c, Show_Format__c, Price__c, Language__c 
@@ -30,6 +30,8 @@ public without sharing class TheaterAndShowsHandler {
             FROM Theater__c 
             WHERE Location__City__s =: city
         ];
+        
+        System.debug('theatersList>>'+theatersList);
 
         List<Theater__c> theaters = new List<Theater__c>();
         for (Theater__c theater : theatersList) {
@@ -56,9 +58,8 @@ public without sharing class TheaterAndShowsHandler {
 
     @AuraEnabled
     public static Showtime__c getTheaterWithMovieInfo(Id showId) {
-        System.debug('');
         if (showId != null) {
-            return [SELECT Id, Show_Time__c, Screen__r.Screen_Label__c, Theater__r.Name, Theater__c, 
+            return [SELECT Id, Show_Time__c, Screen__r.Screen_Label__c, Theater__r.Name,Theater__r.Location__Street__s,Theater__r.Location__City__s, Theater__c, 
                            Movie__r.Name, Movie__r.Poster__c, Movie__c, Price__c, Language__c, Show_Format__c 
                     FROM Showtime__c 
                     WHERE Id =: showId LIMIT 1];

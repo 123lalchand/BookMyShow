@@ -49,10 +49,7 @@ export default class DateFilterForShows extends LightningElement {
         } else {
             selectedDateTime.setHours(7, 0); // Set to 7:00 AM for future dates
         }
-          console.log(' index>>>>>>',index);
-         console.log(' isToday>>>>>>',isToday);
-
-        console.log(' selectedDateTimes>>>>>>',selectedDateTime);
+       
         this.dates = this.dates.map((date, i) => {
             return {
                 ...date,

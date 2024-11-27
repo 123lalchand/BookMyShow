@@ -1,0 +1,168 @@
+<apex:page controller="BookingReceiptController" renderAs="pdf">
+    <html>
+        <head>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    font-size: 12px;
+                    color: #333;
+                }
+                .container {
+                    width: 100%;
+                    max-width: 700px;
+                    margin: 0 auto;
+                    padding: 20px;
+                    background-color: #fff;
+                    border: 1px solid #ddd;
+                }
+                .header {
+                    align-items: center;
+                    margin-bottom: 20px;
+                }
+                .header h1 {
+                    margin: 0;
+                    font-size: 20px;
+                    color: #333;
+                }
+                .movie-details {
+                    margin: 10px 0;
+                }
+                .movie-details p {
+                    margin: 2px 0;
+                }
+                .screen-seat-info {
+                    margin-top: 10px;
+                    font-weight: bold;
+                }
+                .order-summary {
+                    margin-top: 20px;
+                }
+                .order-summary h3 {
+                    margin-bottom: 10px;
+                    font-size: 14px;
+                }
+                .order-summary td {
+                    padding: 15px 200px; 
+                    margin-bottom: 10px;
+                }
+                .screen-seat-info p {
+                    margin: 15px 0; 
+                }
+                .order-summary table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+                .order-summary th, .order-summary td {
+                    text-align: left;
+                    padding: 80px 100px;
+                    border-bottom: 1px dashed #333;
+                }
+                .order-summary .total-row {
+                    font-weight: bold;
+                }
+                .footer {
+                    margin-top: 30px;
+                    font-size: 11px;
+                }
+                .footer p {
+                    margin: 2px 0;
+                }
+                hr {
+                    border: none;
+                    border-top: 1px solid #333;
+                }
+                /* Added for Paytm Logo and Lines */
+                .logo-section {
+                    text-align: left;
+                    padding: 10px 0;
+                }
+               
+                .line {
+                    border-bottom: 2px solid black;
+                    margin: 20px 0;
+                }
+                .dotted-line {
+                    border-bottom: 2px dotted black;
+                    margin: 20px 0;
+                }
+                .subCol{
+                 	padding-right:10px
+                }
+               
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <!-- Paytm Logo Section -->
+                <div class="logo-section">
+                    <img src="{!$Resource.logo}" width="200px" height="50px"/>
+                </div>
+
+                <!-- Solid Line -->
+                <div class="line">
+                    <hr/>
+                </div>
+
+                <!-- Header Section -->
+                <div class="header">
+                        <h1>{!receipt.Movie__r.Name}</h1>
+                        <p>Language : {!receipt.Showtime__r.Language__c}</p>
+                             <!-- Screen and Seat Info -->
+                        <div class="screen-seat-info">
+                            <p>Screen: {!receipt.Showtime__r.Screen__r.Screen_Label__c}</p>
+                            <p>Seat: <span style="background-color:yellow;">{!receipt.Seat_Numbers__c}</span></p>
+                        </div>
+                        <p><b>{!receipt.Theater__r.Name}</b></p>
+                        <p>{!receipt.Theater__r.Location__Street__s}, {!receipt.Theater__r.Location__City__s}</p>
+                </div>
+                
+               
+
+                <!-- Order Summary Section -->
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <table style="border-spacing: 10px 300px; width:100%">
+                        <tr>
+                            <td><b>Total Cost Of Tickets</b></td>
+                            <td><b>Rs.{!receipt.Number_of_Tickets__c*receipt.Per_Ticket_Price__c}</b></td>
+                        </tr> 
+                        <tr>
+                            <td class="subCol">Number Of Tickets</td>
+                            <td>{!receipt.Number_of_Tickets__c}</td>
+                        </tr> 
+                        <tr>
+                            <td class="subCol">Per Ticket Price</td>
+                            <td>Rs.{!receipt.Per_Ticket_Price__c}</td>
+                        </tr>
+                         <tr>
+                             <td><b>Total Charges</b></td>
+                             <td ><b>Rs.{!(bookingCharges+taxCharges)*receipt.Number_of_Tickets__c}</b></td>
+                        </tr>
+                        <tr>
+                            <td  class="subCol">Booking Charges</td>
+                            <td>Rs.{!bookingCharges}</td>
+                        </tr>
+                        <tr>
+                            <td class="subCol">Gst Tax</td>
+                            <td >Rs.{!taxCharges}</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><b>Total</b></td>
+                            <td><b>Rs.{!receipt.Total_Price__c}</b></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Dotted Line -->
+                <div class="dotted-line"></div>
+
+                <hr />
+
+                <!-- Footer Section -->
+                <div class="footer">
+                    <p>Booking Date: {!formattedShowTime}</p>
+                </div>
+            </div>
+        </body>
+    </html>
+</apex:page>

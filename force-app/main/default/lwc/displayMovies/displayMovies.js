@@ -32,8 +32,8 @@ export default class DisplayMovies extends NavigationMixin(LightningElement) {
 
     getMoviesBasedCityMethod(upcomingShow, currentcity, language, genres) {
         this.city = currentcity;
-
-        getMoviesBasedOnFilter({ upcomingShow: upcomingShow, city: currentcity })
+       if(language=='' && (genres=='' || genres!='')){
+             getMoviesBasedOnFilter({ upcomingShow: upcomingShow, city: currentcity })
             .then(result => {
                 if (result.length > 0) {
                     this.allmovies = result;
@@ -53,9 +53,15 @@ export default class DisplayMovies extends NavigationMixin(LightningElement) {
             .catch(error => {
                 console.log('error', error);
             });
+       }else{
+            this.handleFilters(language, genres);
+       }
+       
     }
 
    handleFilters(language, genres) {
+    this.isLoding=true;
+    this.movieNotFound = false;
     const selectedGenres = genres ? genres.split(';') : [];   
         this.movies = this.allmovies.filter(movie => {
         const languageMatches = language === 'All' || !language || movie.Language__c.includes(language);
@@ -65,6 +71,10 @@ export default class DisplayMovies extends NavigationMixin(LightningElement) {
 
         return languageMatches && genreMatches;
     });
+    if( this.movies.length==0){
+         this.movieNotFound = true;
+    }
+    this.isLoding=false;
    }
 
     formatMovies() {

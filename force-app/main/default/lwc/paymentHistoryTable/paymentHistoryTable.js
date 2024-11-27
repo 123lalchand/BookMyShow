@@ -2,7 +2,7 @@ import { LightningElement,wire } from 'lwc';
 import getBookingRecords from '@salesforce/apex/BookingTicketHandler.getBookingRecords';
 import { refreshApex } from '@salesforce/apex';
     const columns =[
-    {label: 'Name', fieldName: 'Name', type: 'text'},
+    {label: 'Booking Number', fieldName: 'Name', type: 'text'},
     {label: 'Movie Name', fieldName: 'MovieTitle', type: 'text'},
     {label: 'Theater Name', fieldName: 'TheaterName', type: 'text'},
     {

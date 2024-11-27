@@ -1,4 +1,4 @@
-public without sharing class ShowtimeTriggerHandler {
+public with sharing class ShowtimeTriggerHandler {
     public static void updateScreen(List<Showtime__c> showList){
         Set<Id> theaterIds=new Set<Id>();
         for(Showtime__c show : showList){

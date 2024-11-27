@@ -77,6 +77,7 @@ export default class BookMovieTickets extends NavigationMixin(LightningElement) 
         });
     }
     cancelBtn(){
+        console.log('showrecord',this.showrecord);
         this.dispatchEvent(new CustomEvent('cancel',{
             detail:false
         }));

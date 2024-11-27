@@ -1,12 +1,14 @@
-public without sharing class BookingTicketHandler {
+public without sharing  class BookingTicketHandler {
     public static String rozorpayBaseUrl = System.Label.RazorpayBaseUrl;
     public static String RazorpayApiKey = System.Label.RazorpayApiKey;
     public static String RazorpayApiSecret = System.Label.RazorpayApiSecret;
+	public static String RedirectSiteUrl = System.Label.RedirectSiteUrl;
 
     @AuraEnabled
     public static Booking__c createBookingRecord(String showRecord,decimal totalFees ) {
         try {
 		    Map<String, Object> showRecordObj = (Map<String, Object>)JSON.deserializeUntyped(showRecord);
+            Map<String, Object> screen = (Map<String, Object>)showRecordObj.get('Screen__r');
             System.debug('showRecordObj>>'+showRecordObj);
             if(!string.isBlank((String) showRecordObj.get('Id'))){
                 Booking__c bookingRecord = new Booking__c();
@@ -16,7 +18,9 @@ public without sharing class BookingTicketHandler {
                 bookingRecord.Theater__c =(String) showRecordObj.get('Theater__c');
                 bookingRecord.Movie__c =(String) showRecordObj.get('Movie__c');
                 bookingRecord.Per_Ticket_Price__c =(Decimal) showRecordObj.get('Price__c');
-             //   bookingRecord.Payment_Status__c = (String)showRecordObj.get('Booked');
+                bookingRecord.Format__c =(String) showRecordObj.get('Show_Format__c');
+                bookingRecord.Language__c =(String) showRecordObj.get('Language__c');
+                bookingRecord.Screen__c =(String) screen.get('Screen_Label__c');
                 bookingRecord.Fees__c = totalFees;
                 bookingRecord.Number_of_Tickets__c = (Integer)showRecordObj.get('totalSelectedSeats');
                 bookingRecord.Booking_Status__c = 'Pending';
@@ -117,10 +121,9 @@ public without sharing class BookingTicketHandler {
                 'sms' => false,
                 'email' => false
             },
-                 'callback_url' => 'https://techmatrix-8c-dev-ed.develop.my.site.com/s/paymentstatus?bookingId='+bookingRecordId,
-            //'callback_url' => 'https://techmatrix-8c-dev-ed.develop.preview.salesforce-experience.com/paymentstatus?bookingId='+bookingRecordId,
+                'callback_url' => RedirectSiteUrl+'/s/paymentstatus?bookingId='+bookingRecordId,//redirect site url
             'callback_method' => 'get'
-        });
+        }); 
         
         req.setBody(body);
 
@@ -157,6 +160,35 @@ public without sharing class BookingTicketHandler {
             attachment.setContentType('application/pdf');
             email.setFileAttachments(new Messaging.EmailFileAttachment[] { attachment });
             return email;
+    }
+    
+    @AuraEnabled
+    public static String sendSMS(){   
+		HttpRequest req = new HttpRequest();
+        req.setEndpoint('https://sms77io.p.rapidapi.com/sms');
+        req.setMethod('POST');
+        
+        String authHeader = 'Basic ccd55b3c0cmshf784dead707ec76p11a084jsn04fb2dd2af66';
+        req.setHeader('x-rapidapi-key', authHeader);
+        req.setHeader('Content-Type', 'application/json');
+        String body = JSON.serialize(new Map<String, Object>{
+            'to' => '+91 6378064983',
+            'p' => '4502BD66CA71F45415581f7301655Eef633bA4496d1984d1e8739176481Dd0E9',
+            'text' => 'hii Dear'
+        });
+        
+        req.setBody(body);
+
+        Http http = new Http();
+        HTTPResponse res = http.send(req);
+		 System.debug(res.getStatusCode());
+        if(res.getStatusCode()==200){
+            System.debug('body'+res.getBody());
+            return res.getBody();
+        }else{
+            System.debug('body'+res.getBody()); 
+            return res.getBody();
+        }
     }
     
      @AuraEnabled(cacheable=true)
